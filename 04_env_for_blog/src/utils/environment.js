@@ -11,7 +11,6 @@ class Environment {
             "PRODUCTION": require("./environments/production.json")
         }
 
-        // this.apply("DEVELOPMENT")
         this.verifyEnvironments()
 
     }
@@ -27,7 +26,6 @@ class Environment {
 
 
         Object.keys(this.environments[env]).forEach(key => {
-            console.log(key, this.environments[env][key])
             this[key] = this.environments[env][key]
 
         })

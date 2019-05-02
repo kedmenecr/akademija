@@ -1,19 +1,24 @@
 import express from "express"
 
-import environment from "../utils/environment"
-import loger from "../utils/loger"
-
+import environment from "./utils/environment"
+import loger from "./utils/loger"
+import buildConfig from "./config/build-config"
 
 const app = express()
 
 
-app.use(express.json())
 
+
+
+
+
+
+buildConfig()
+
+
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-
-// rewrite with enviroment
 
 app.listen(environment.port, () => {
     loger.log("Started at PORT ", environment.port)
