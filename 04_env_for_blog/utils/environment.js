@@ -11,6 +11,7 @@ class Environment {
             "PRODUCTION": require("./environments/production.json")
         }
 
+        // this.apply("DEVELOPMENT")
         this.verifyEnvironments()
 
     }
