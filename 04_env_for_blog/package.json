@@ -4,9 +4,12 @@
   "description": "Blog for academy",
   "main": "index.js",
   "scripts": {
-    "develop": "nodemon --exec babel-node src/index.js",
+    "develop": "nodemon --exec babel-node src/index.js env=DEVELOPMENT",
+    "staging": "nodemon --exec babel-node src/index.js env=STAGING",
+    "production": "nodemon --exec babel-node src/index.js env=PRODUCTION",
     "build": "babel src --out-dir dist",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "deploy": "npm run build && npm run serve"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +19,9 @@
     "@babel/cli": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "nodemon": "^1.19.0"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.17.1"
   }
 }
