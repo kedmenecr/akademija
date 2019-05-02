@@ -1,54 +1,55 @@
+import loger from '../utils/loger'
 class Environment {
-    constructor() {
+	constructor() {
 
-        this.DEVELOPMENT = "DEVELOPMENT"
-        this.STAGING = "STAGING"
-        this.PRODUCTION = "PRODUCTION"
+		this.DEVELOPMENT = 'DEVELOPMENT'
+		this.STAGING = 'STAGING'
+		this.PRODUCTION = 'PRODUCTION'
 
-        this.environments = {
-            "DEVELOPMENT": require("./environments/development.json"),
-            "STAGING": require("./environments/staging.json"),
-            "PRODUCTION": require("./environments/production.json")
-        }
+		this.environments = {
+			'DEVELOPMENT': require('./environments/development.json'),
+			'STAGING': require('./environments/staging.json'),
+			'PRODUCTION': require('./environments/production.json')
+		}
 
-        this.verifyEnvironments()
+		this.verifyEnvironments()
 
-    }
+	}
 
-    getCurrent() {
-        return this.current
-    }
+	getCurrent() {
+		return this.current
+	}
 
-    apply(env) {
-        if (this.check(env)) {
-            this.current = env
-        }
+	apply(env) {
+		if (this.check(env)) {
+			this.current = env
+		}
 
 
-        Object.keys(this.environments[env]).forEach(key => {
-            this[key] = this.environments[env][key]
+		Object.keys(this.environments[env]).forEach(key => {
+			this[key] = this.environments[env][key]
 
-        })
+		})
 
-    }
+	}
 
-    check(env) {
-        if (env === this.DEVELOPMENT || env === this.STAGING || env === this.PRODUCTION) {
-            return true
-        } else {
-            return false
-        }
-    }
+	check(env) {
+		if (env === this.DEVELOPMENT || env === this.STAGING || env === this.PRODUCTION) {
+			return true
+		} else {
+			return false
+		}
+	}
 
-    verifyEnvironments() {
-        Object.keys(this.environments).forEach(environment => {
-            if (!this[environment]) {
-                console.log(`Env defined without enum key : ${environment}`)
-                process.exit(0)
-            }
+	verifyEnvironments() {
+		Object.keys(this.environments).forEach(environment => {
+			if (!this[environment]) {
+				loger.log(`Env defined without enum key : ${environment}`)
+				process.exit(0)
+			}
 
-        })
-    }
+		})
+	}
 }
 
 

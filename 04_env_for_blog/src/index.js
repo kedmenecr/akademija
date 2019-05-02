@@ -1,8 +1,8 @@
-import express from "express"
+import express from 'express'
 
-import environment from "./utils/environment"
-import loger from "./utils/loger"
-import buildConfig from "./config/build-config"
+import environment from './utils/environment'
+import loger from './utils/loger'
+import buildConfig from './config/build-config'
 
 const app = express()
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.listen(environment.port, () => {
-    loger.log("Started at PORT ", environment.port)
+	loger.log('Started at PORT ', environment.port)
 
 
 })
