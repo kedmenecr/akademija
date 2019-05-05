@@ -9,7 +9,7 @@ exports = typeof window === 'undefined' ? global : window;
 
 exports.bestPracticesAnswers = {
   globals: function() {
-    myObject = {
+    const myObject = {
       name: 'Jory'
     };
 
@@ -17,10 +17,11 @@ exports.bestPracticesAnswers = {
   },
 
   parseInt: function(num) {
-    return parseInt(num);
+    return parseInt(num)
   },
 
   identity: function(val1, val2) {
+    return val1 === val2 ? true : false;
+}
 
-  }
-};
+}
