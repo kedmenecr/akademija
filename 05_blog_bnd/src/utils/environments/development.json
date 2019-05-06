@@ -1,8 +1,8 @@
 {
     "name": "DEVELOPMENT",
-    "port": 8005,
+    "port": 9090,
     "databaseHost": "localhost",
     "databaseName": "blog",
     "databaseUser": "root",
-    "databasePassword": "root"
+    "databasePassword": ""
 }
