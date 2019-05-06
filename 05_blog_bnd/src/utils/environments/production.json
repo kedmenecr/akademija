@@ -1,0 +1,8 @@
+{
+    "name": "PRODUCTION",
+    "port": 8005,
+    "databaseHost": "localhost",
+    "databaseName": "blog",
+    "databaseUser": "root",
+    "databasePassword": "root"
+}
