@@ -52,18 +52,18 @@ UNLOCK TABLES;
 -- Table structure for table `like`
 --
 
-DROP TABLE IF EXISTS `like`;
+DROP TABLE IF EXISTS `love`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `like` (
-  `likeId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `love` (
+  `loveId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `postId` int(11) NOT NULL,
-  PRIMARY KEY (`likeId`),
-  KEY `FK_like_post_idx` (`postId`),
-  KEY `FK_like_user_idx` (`userId`),
-  CONSTRAINT `FK_like_post` FOREIGN KEY (`postId`) REFERENCES `post` (`postId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_like_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`loveId`),
+  KEY `FK_love_post_idx` (`postId`),
+  KEY `FK_love_user_idx` (`userId`),
+  CONSTRAINT `FK_love_post` FOREIGN KEY (`postId`) REFERENCES `post` (`postId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_love_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -71,10 +71,10 @@ CREATE TABLE `like` (
 -- Dumping data for table `like`
 --
 
-LOCK TABLES `like` WRITE;
-/*!40000 ALTER TABLE `like` DISABLE KEYS */;
-INSERT INTO `like` VALUES (1,3,1);
-/*!40000 ALTER TABLE `like` ENABLE KEYS */;
+LOCK TABLES `love` WRITE;
+/*!40000 ALTER TABLE `love` DISABLE KEYS */;
+INSERT INTO `love` VALUES (1,3,1);
+/*!40000 ALTER TABLE `love` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -90,10 +90,7 @@ CREATE TABLE `post` (
   `description` varchar(240) NOT NULL,
   `content` text NOT NULL,
   `createdAt` datetime NOT NULL,
-  `tagId` int(11) NOT NULL,
-  `commentId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `likeId` int(11) NOT NULL,
   PRIMARY KEY (`postId`),
   KEY `FK_userId_idx` (`userId`),
   CONSTRAINT `FK_user_post` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -106,7 +103,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (1,'Kako se zapolsiti?',' DescriptionDescriptionDescriptionDescription','ContentContentContentContent','1970-01-01 00:00:01',1,1,1,1);
+INSERT INTO `post` VALUES (1,'Kako se zapolsiti?',' DescriptionDescriptionDescriptionDescription','ContentContentContentContent','1970-01-01 00:00:01',1);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
