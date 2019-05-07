@@ -2,11 +2,11 @@ const responseService = require('../../../services/response.service')
 const userService = require('../../../services/user.service')
 
 
-const getUsers = async (req, res) => {
+const deleteUser = async (req, res) => {
 
 	try {
 
-		const result = await userService.getAllUsers()
+		const result = await userService.deleteUser()
 
 
 		if (result.success) {
@@ -24,4 +24,4 @@ const getUsers = async (req, res) => {
 	}
 }
 
-module.exports = getUsers
+module.exports = deleteUser

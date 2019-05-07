@@ -1,9 +1,14 @@
-const userModule = require('../modules/user/user.module')
+const userModule = require('../modules/user/user.module');
+const roleModule = require('../modules/role/role.module');
 
 module.exports = [
 	{
-		route: '/user',
+		route: '/users',
 		module: userModule
+	},
+	{
+		route: '/role',
+		module: roleModule
 	}
 
 ]

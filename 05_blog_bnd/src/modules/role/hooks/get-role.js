@@ -1,18 +1,18 @@
 const responseService = require('../../../services/response.service')
-const userService = require('../../../services/user.service')
+const roleService = require('../../../services/role.service')
 
 
 const getUsers = async (req, res) => {
 
 	try {
 
-		const result = await userService.getAllUsers()
+		const result = await roleService.getRole()
 
 
 		if (result.success) {
-			const users = result.data.length >= 1 ? result.data : null
-			if (users) {
-				res.send(responseService.formatResponseData(users))
+            const role = result.data.length >= 1 ? result.data : null
+			if (role) {
+				res.send(responseService.formatResponseData(role))
 			} else {
 				res.send(responseService.formatResponseError('not found'))
 			}
