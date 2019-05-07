@@ -3,24 +3,18 @@ const userService = require('../../../services/user.service')
 
 
 const getUsers = async (req, res) => {
-
-	try {
-
-		const result = await userService.getAllUsers()
+	const result = await userService.getUsers()
 
 
-		if (result.success) {
-			const users = result.data.length >= 1 ? result.data : null
-			if (users) {
-				res.send(responseService.formatResponseData(users))
-			} else {
-				res.send(responseService.formatResponseError('not found'))
-			}
+	if (result.success) {
+		const users = result.data.length >= 1 ? result.data : null
+		if (users) {
+			res.send(responseService.formatResponseData(users))
 		} else {
-			responseService.send(responseService.formatResponseError('not found'))
+			res.send(responseService.formatResponseError('not found'))
 		}
-	} catch (error) {
-		console.log('error', error)
+	} else {
+		responseService.send(responseService.formatResponseError('not found'))
 	}
 }
 

@@ -2,7 +2,7 @@ const userModule = require('../modules/user/user.module')
 
 module.exports = [
 	{
-		route: '/users',
+		route: '/user',
 		module: userModule
 	}
 
