@@ -7,7 +7,7 @@ module.exports = [
 		module: userModule
 	},
 	{
-		route: '/role',
+		route: '/roles',
 		module: roleModule
 	}
 

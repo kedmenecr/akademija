@@ -2,11 +2,11 @@ const responseService = require('../../../services/response.service')
 const roleService = require('../../../services/role.service')
 
 
-const getRole = async (req, res) => {
+const getRoles = async (req, res) => {
 
 	try {
 
-		const result = await roleService.getSingleRole(req.params.id)
+		const result = await roleService.getAllRole()
 
 
 		if (result.success) {
@@ -24,4 +24,4 @@ const getRole = async (req, res) => {
 	}
 }
 
-module.exports = getRole
+module.exports = getRoles
