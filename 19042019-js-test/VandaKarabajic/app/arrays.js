@@ -1,59 +1,73 @@
 exports = typeof window === 'undefined' ? global : window;
 
 exports.arraysAnswers = {
-  indexOf: function(arr, item) {
+	indexOf: function (arr, item) {
+		let indexIs = arr.indexOf(item)
+		return indexIs
+	},
 
-  },
+	sum: function (arr) {
+		var sum = 0;
+		for (let i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		return sum
+	},
 
-  sum: function(arr) {
+	remove: function (arr, item) {
+		return arr.filter((i) => i !== item);
+	},
 
-  },
+	removeWithoutCopy: function (arr, item) {
+		//ne razumijem bas sto trebam napraviti :'(
+	},
 
-  remove: function(arr, item) {
+	append: function (arr, item) {
+		arr.push(item)
+		return arr
+	},
 
-  },
+	truncate: function (arr) {
+		arr.pop();
+		return arr;
+	},
 
-  removeWithoutCopy: function(arr, item) {
+	prepend: function (arr, item) {
+		arr.unshift(item);
+		return arr;
+	},
 
-  },
+	curtail: function (arr) {
+		arr.shift();
+		return arr;
+	},
 
-  append: function(arr, item) {
+	concat: function (arr1, arr2) {
+		return arr1.concat(arr2)
 
-  },
+	},
 
-  truncate: function(arr) {
+	insert: function (arr, item, index) {
+		arr.splice(index, 0, item)
+		return arr
+	},
 
-  },
+	count: function (arr, item) {
+		let count = 0;
+		arr.forEach((br) => (br === item && count++))
+		return count
+	},
 
-  prepend: function(arr, item) {
+	duplicates: function (arr) {
 
-  },
+	},
 
-  curtail: function(arr) {
+	square: function (arr) {
+		let result = arr.map(x => x * x);
+		return result
+	},
 
-  },
+	findAllOccurrences: function (arr, target) {
 
-  concat: function(arr1, arr2) {
-
-  },
-
-  insert: function(arr, item, index) {
-
-  },
-
-  count: function(arr, item) {
-
-  },
-
-  duplicates: function(arr) {
-
-  },
-
-  square: function(arr) {
-
-  },
-
-  findAllOccurrences: function(arr, target) {
-
-  }
+	}
 };
