@@ -1,16 +1,17 @@
 const responseService = require('../../../services/response.service')
 const roleService = require('../../../services/role.service')
+const Loger = require('../../../utils/loger')
 
 
 const getRoles = async (req, res) => {
 
 	try {
 
-		const result = await roleService.getAllRole()
+		const result = await roleService.getAllRoles()
 
 
 		if (result.success) {
-            const role = result.data.length >= 1 ? result.data : null
+			const role = result.data.length >= 1 ? result.data : null
 			if (role) {
 				res.send(responseService.formatResponseData(role))
 			} else {
@@ -20,7 +21,7 @@ const getRoles = async (req, res) => {
 			responseService.send(responseService.formatResponseError('not found'))
 		}
 	} catch (error) {
-		console.log('error', error)
+		Loger.error(error)
 	}
 }
 
