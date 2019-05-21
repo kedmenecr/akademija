@@ -16,10 +16,10 @@ class UserService {
 
 		return dbService.query(`UPDATE blog.user 
 		SET username='${data.username}', 
-		firstName='matkolatko', 
-		lastName='matkoci', email='mmokic', 
+		firstName='matkolatkosdffd', 
+		lastName='matkocisdfsdf', email='mmokicsdfsdf', 
 		password='testPWW' 
-		WHERE userId='3';`)
+		WHERE userId='1';`)
 		// return dbService.query(
 		// 	`UPDATE user 
 		// 	SET username = ${data.username},
@@ -31,7 +31,7 @@ class UserService {
 		// 	`)
 	}
 	deleteUser(id) {
-		return dbService.query(`SELECT * FROM user WHERE userId = ${id}`)
+		return dbService.query(`SELECT username FROM user`)
 	}
 
 }

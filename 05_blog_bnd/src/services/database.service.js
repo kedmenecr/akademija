@@ -10,8 +10,8 @@ class DatabaseService {
 
 		const options = {
 			host: environment.databaseHost,
-			user: environment.databaseUser,
-			password: environment.databasePassword,
+			user: "root",
+			password: "root",
 			database: environment.databaseName
 		}
 
