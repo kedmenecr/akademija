@@ -27,9 +27,7 @@ export default class Home extends Component {
 		// await axios.get(`https://jsonplaceholder.typicode.com/todos`)
 		await axios.get(`http://localhost:9090/data`)
 			.then(res => {
-				console.log('res', res)
 				const todos = res.data;
-				console.log('todos', todos)
 				this.setState({ todos });
 			})
 
@@ -58,7 +56,7 @@ export default class Home extends Component {
 					<Button handler={() => this.getAlert()} text="Add new item" docked="right" style={{ color: "red" }}></Button>
 				</Toolbar>
 				<Column
-					text="ID"
+					text="Category"
 					dataIndex="categoryName"
 					flex={2}
 					resizable
@@ -73,7 +71,7 @@ export default class Home extends Component {
 
 				</Column>
 				<Column
-					text="Title"
+					text="Product"
 					dataIndex="productName"
 					flex={2}
 					resizable
@@ -88,7 +86,7 @@ export default class Home extends Component {
 				>{this.state.todoTitles}
 				</Column>
 				<Column
-					text="Status"
+					text="Price"
 					dataIndex="price"
 					flex={2}
 					resizable
