@@ -24,9 +24,12 @@ export default class Home extends Component {
 	}
 
 	async componentDidMount() {
-		await axios.get(`https://jsonplaceholder.typicode.com/todos`)
+		// await axios.get(`https://jsonplaceholder.typicode.com/todos`)
+		await axios.get(`http://localhost:9090/data`)
 			.then(res => {
+				console.log('res', res)
 				const todos = res.data;
+				console.log('todos', todos)
 				this.setState({ todos });
 			})
 
@@ -56,7 +59,7 @@ export default class Home extends Component {
 				</Toolbar>
 				<Column
 					text="ID"
-					dataIndex="userId"
+					dataIndex="categoryName"
 					flex={2}
 					resizable
 					responsiveConfig={{
@@ -71,7 +74,7 @@ export default class Home extends Component {
 				</Column>
 				<Column
 					text="Title"
-					dataIndex="title"
+					dataIndex="productName"
 					flex={2}
 					resizable
 					responsiveConfig={{
@@ -86,7 +89,7 @@ export default class Home extends Component {
 				</Column>
 				<Column
 					text="Status"
-					dataIndex="completed"
+					dataIndex="price"
 					flex={2}
 					resizable
 				/>
