@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, TitleBar, Button, Sheet, Panel } from '@sencha/ext-modern';
 import { Transition } from '@sencha/ext-react-transition';
+import  AddNew from './Home/AddNew'
 
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { medium, large } from './responsiveFormulas';
@@ -76,6 +77,7 @@ class Layout extends Component {
 				<Switch>
 					<Route path="/" component={Home} exact />
 					<Route path="/about" component={About} />
+					<Route path="/addnew" component={AddNew} />
 				</Switch>
 			</Container>
 		);
