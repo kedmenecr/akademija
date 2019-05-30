@@ -39,6 +39,19 @@ app.get('/threats', (req, res) => {
     res.send(threats);
 });
 
+app.get('/getbug', (req, res) => {
+    request.get({
+        headers: { 'content-type': 'application/json' },
+        url: `${heroesService}/callbug`,
+    }, (err, heroResponse, body) => {
+        if (!err) {
+            res.status(202).send(heroResponse.body);
+        } else {
+            res.status(400).send({ problem: `Bug Service responded with issue ${err}` });
+        }
+    });
+});
+
 app.post('/assignment', (req, res) => {
     request.post({
         headers: { 'content-type': 'application/json' },

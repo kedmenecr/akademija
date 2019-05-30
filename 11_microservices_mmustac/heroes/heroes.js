@@ -1,10 +1,15 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const request = require('request');
+
 
 const port = process.argv.slice(2)[0];
 const app = express();
 app.use(bodyParser.json());
+
+const bugService = 'http://localhost:9999';
+
 
 const powers = [
     { id: 1, name: 'flying' },
@@ -75,6 +80,19 @@ app.post('/hero/**', (req, res) => {
         console.log(`Hero not found.`);
         res.status(404).send();
     }
+});
+
+app.get('/callbug', (req, res) => {
+    request.get({
+        headers: { 'content-type': 'application/json' },
+        url: `${bugService}/bug`,
+    }, (err, bugResponse) => {
+        if (!err) {
+            res.status(202).send(bugResponse.body);
+        } else {
+            res.status(400).send({ problem: `Bug Service responded with issue ${err}` });
+        }
+    });
 });
 
 app.use('/img', express.static(path.join(__dirname, 'img')));
