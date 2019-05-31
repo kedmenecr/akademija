@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Text } from "react";
 import {
 	Grid,
 	Toolbar,
@@ -6,8 +6,10 @@ import {
 	SearchField,
 	Button,
 	Image,
-	TextField
+	WidgetCell
 } from "@sencha/ext-modern";
+
+
 
 //import { Panel } from '@sencha/ext-modern';
 //import { TextArea } from '@sencha/ext-modern';
@@ -26,18 +28,9 @@ export default class Home extends Component {
 	store = new Ext.data.Store({
 		data: [this.state.todos]
 	});
-	// async getAlert(data) {
-	//   const payload = {
-	//     lol: "lol2"
-	//   };
-	//   await axios.post(`http://localhost:9090/create`, payload).then(res => {
-	//     console.log(res);
-	//   });
-	// }
 
 	async componentDidMount() {
-		// await axios.get(`https://jsonplaceholder.typicode.com/todos`)
-		await axios.get(`http://localhost:9090/data`).then(res => {
+		await axios.get(`http://localhost:9092/data`).then(res => {
 			const todos = res.data;
 
 			this.setState({ todos });
@@ -46,24 +39,20 @@ export default class Home extends Component {
 		this.store.add(this.state.todos);
 	}
 
+	deleteItem = async () => {
+
+
+	}
+
+	updateItem() {
+
+	}
+
+
 	render() {
 		return (
 			<Grid store={this.store}>
 				<Toolbar docked="top">
-					<SearchField
-						ui="faded"
-						ref={field => (this.query = field)}
-						placeholder="Search..."
-						onChange={this.onSearch.bind(this)}
-						responsiveConfig={{
-							[small]: {
-								flex: 1
-							},
-							[medium]: {
-								flex: undefined
-							}
-						}}
-					/>
 					<Button
 						handler={() => this.getAlert()}
 						text="Add new item"
@@ -72,7 +61,7 @@ export default class Home extends Component {
 					/>
 				</Toolbar>
 				<Column
-					text="Category"
+					text="Category Name"
 					dataIndex="categoryName"
 					flex={2}
 					resizable
@@ -102,15 +91,27 @@ export default class Home extends Component {
 					{this.state.todoTitles}
 				</Column>
 				<Column text="Price" dataIndex="price" flex={2} resizable />
-				<Column text="operations">
-					<TextField placeHolder="Enter Name..." label="Name" required />
+				<Column text="Delete Item" flex={1} >
+					<WidgetCell
+					>
+						<Button
+							ui="round action"
+							handler={this.deleteItem}
+							text="DELETE"
+							style={{ border: '1px solid red', background: "red" }} />/>
+					</WidgetCell>
+				</Column>
+				<Column text="Update Item" flex={1} >
+					<WidgetCell >
+						<Button
+							ui="round action"
+							handler={this.updateItem}
+							text="UPDATE"
+							style={{ border: '1px solid red', background: "red" }} />
+					</WidgetCell>
 				</Column>
 			</Grid>
 		);
 	}
 
-  /**
-   * Filter the store when the user types in the search box
-   */
-	onSearch = () => { };
 }
