@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
-var cors = require("cors")
+// var cors = require("cors")
 
 // Express init
 const app = express();
@@ -11,8 +11,8 @@ const app = express();
 const db = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	password: "",
-	database: "Sencha"
+	password: "mkmk",
+	database: "sencha"
 });
 
 db.connect(error => {
@@ -23,12 +23,17 @@ db.connect(error => {
 	}
 });
 
+//Body-Parser middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //Get all data from database
 
 app.get("/data", (req, res) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	let sql = (`SELECT * FROM Sencha.category, Sencha.products;`)
+	let sql = (`SELECT * FROM sencha.category, sencha.products;`)
 	let querry = db.query(sql, (error, results) => {
 		if (error) throw error
 		res.send(results)
@@ -43,13 +48,18 @@ app.get("/data", (req, res) => {
 // 	})
 // });
 
-// app.post("/data", (req, res) => {
-// 	// let sql = (`SELECT * FROM test.animals, test.foods;`)
-// 	let querry = db.query(sql, (error, results) => {
-// 		if (error) throw error
-// 		res.send(results)
-// 	})
-// });
+
+
+app.post('/category', function (req, res) {
+var postData = req.body;
+
+db.query("INSERT INTO category SET ?",
+postData, function (error, results, fields) {
+if (error) throw error;
+console.log(results.categoryId); // Auto increment id
+res.end(JSON.stringify(results));
+});
+});
 
 // app.delete("/data/:id", (req, res) => {
 // 	let sql = (`SELECT * FROM test.animals, test.foods;`)
@@ -62,8 +72,7 @@ app.get("/data", (req, res) => {
 //Get individual food data from database 
 
 
-// //Body-Parser middleware
-// app.use(bodyParser.json())
+
 
 const port = 9090;
 
