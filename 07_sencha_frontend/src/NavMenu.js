@@ -24,7 +24,6 @@ export default function NavMenu({
 					children: [
 						{ id: '/', text: 'Home', iconCls: 'x-fa fa-home', leaf: true },
 						{ id: '/about', text: 'About', iconCls: 'x-fa fa-info', leaf: true },
-						{ id: '/addnew', text: 'Add New', iconCls: 'x-fa fa-info', leaf: true }
 					]
 				}
 			}}
