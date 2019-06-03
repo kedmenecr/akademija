@@ -11,7 +11,7 @@ const app = express();
 const db = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	password: "mkmk",
+	password: "",
 	database: "sencha"
 });
 
@@ -29,61 +29,134 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Cors middleware
 app.use(cors())
-//Get all data from database
 
-app.get("/data", (req, res) => {
+//Valuable data combined
+app.get("/data/all", (req, res) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	let sql = (`SELECT productId, productName,category.categoryName, products.price
 							FROM products
 							RIGHT JOIN category
 							ON products.categoryId = category.categoryId;`)
-	let querry = db.query(sql, (error, results) => {
+	let query = db.query(sql, (error, results) => {
 		if (error) throw error
 		res.send(results)
 	})
 });
 
-// app.put("/data/:id", (req, res) => {
-// 	// let sql = (`SELECT * FROM test.animals, test.foods;`)
-// 	let querry = db.query(sql, (error, results) => {
-// 		if (error) throw error
-// 		res.send(results)
-// 	})
-// });
+//**CATEGORY DATA**//
 
-app.post('/category', function (req, res) {
-var postData = req.body;
+// Get all category data
 
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-db.query("INSERT INTO category SET ?",
-postData, function (error, results, fields) {
-if (error) throw error;
-console.log(results.categoryId); // Auto increment id
-res.end(JSON.stringify(results));
-});
+app.get("/data/category/all", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	let sql = (`SELECT * FROM sencha.category`)
+	let query = db.query(sql, (error, results) => {
+		if (error) throw error
+		res.send(results)
+	})
 });
 
-app.put("/fakeput/:id", (req, res) => {
+//Post new category
+
+app.post("/data/category/new", function (req, res) {
+	
+	let newCategory = req.body
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		db.query("INSERT INTO category SET ?",
+		newCategory, function (error, results, fields) {
+		if (error) throw error;
+		console.log(results.categoryId); // Auto increment id
+		res.end(JSON.stringify(results));
+	});
+});
+
+//Edit a category by ID
+
+app.put("/data/category/:id", (req, res) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	var newTitle = req.body.categoryName
 	let sql = (`UPDATE category SET categoryName = '${newTitle}' WHERE categoryId = ${req.params.id};`)
-	let querry = db.query(sql, (error, results) => {
+	let query = db.query(sql, (error, results) => {
 		if (error) throw error
 		res.send(JSON.stringify(results))
 	})
 });
 
-// app.delete("/data/:id", (req, res) => {
-// 	let sql = (`SELECT * FROM test.animals, test.foods;`)
-// 	let querry = db.query(sql, (error, results) => {
-// 		if (error) throw error
-// 		res.send(results)
-// 	})
-// });
+//Delete  category data
+
+app.delete("/data/category/:id", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+	let sql = (`DELETE FROM category WHERE categoryId = ${req.params.id};`)
+	let query = db.query(sql, (error, results) => {
+		if (error) throw error
+		res.send(JSON.stringify(results))
+	})
+});
+
+//**PRODUCTS DATA**//
+
+//Get all products data
+
+app.get("/data/products/all", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	let sql = (`SELECT * FROM sencha.products`)
+	let query = db.query(sql, (error, results) => {
+		if (error) throw error
+		res.send(results)
+	})
+});
+
+//Post new products
+
+app.post('/data/products/new', function (req, res) {
+	
+	let newProduct = req.body;
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		db.query("INSERT INTO products SET ?",
+		newProduct, function (error, results, fields) {
+		if (error) throw error;
+		console.log(results.categoryId); // Auto increment id
+		res.end(JSON.stringify(results));
+	});
+});
+
+// Edit a products data
+
+app.put("/data/products/:id", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	let newProductName = req.body.productName
+	let newProductPrice = req.body.price
+	let sql = (`UPDATE products SET productName = '${newProductName}', price = ${newProductPrice} WHERE productId = ${req.params.id};`)
+	let query = db.query(sql, (error, results) => {
+		if (error) throw error
+		res.send(JSON.stringify(results))
+	})
+});
+
+
+//Delete data
+app.delete("/data/products/:id", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+	let sql = (`DELETE FROM products WHERE productId = ${req.params.id};`)
+	let query = db.query(sql, (error, results) => {
+		if (error) throw error
+		res.send(JSON.stringify(results))
+	})
+});
+
 
 const port = 9090;
 
