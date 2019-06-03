@@ -9,10 +9,6 @@ import {
 	WidgetCell
 } from "@sencha/ext-modern";
 
-
-
-//import { Panel } from '@sencha/ext-modern';
-//import { TextArea } from '@sencha/ext-modern';
 import axios from "axios";
 import { small, medium } from "../responsiveFormulas";
 
@@ -30,34 +26,45 @@ export default class Home extends Component {
 	});
 
 	async componentDidMount() {
-		await axios.get(`http://localhost:9092/data`).then(res => {
+		await axios.get(`http://localhost:9090/data`).then(res => {
 			const todos = res.data;
-
 			this.setState({ todos });
 		});
 
 		this.store.add(this.state.todos);
+
 	}
 
 	deleteItem = async () => {
+		Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+	}
 
 
+	onConfirm(choice) {
+		if (choice === 'yes') {
+			console.log("you clicked yes")
+		} else {
+			console.log("you clicked no")
+		}
 	}
 
 	updateItem() {
-
+		window.open("./updateItem", "_self")
 	}
 
+	addNew() {
+		window.open("./addNew", "_self")
+	}
 
 	render() {
 		return (
 			<Grid store={this.store}>
 				<Toolbar docked="top">
 					<Button
-						handler={() => this.getAlert()}
+						handler={this.addNew}
 						text="Add new item"
 						docked="right"
-						style={{ color: "red" }}
+						style={{ color: "green" }}
 					/>
 				</Toolbar>
 				<Column
@@ -88,28 +95,28 @@ export default class Home extends Component {
 						}
 					}}
 				>
-					{this.state.todoTitles}
 				</Column>
 				<Column text="Price" dataIndex="price" flex={2} resizable />
-				<Column text="Delete Item" flex={1} >
-					<WidgetCell
-					>
-						<Button
-							ui="round action"
-							handler={this.deleteItem}
-							text="DELETE"
-							style={{ border: '1px solid red', background: "red" }} />/>
-					</WidgetCell>
+				<Column text="Actions" flex={2} >
+					<Column text="Delete" flex={1} align="center">
+						<WidgetCell >
+							<Button
+								iconCls="x-fa fa-trash"
+								handler={this.deleteItem}
+								style={{ color: 'red' }} />
+						</WidgetCell>
+					</Column>
+					<Column text="Update" flex={1} align="center">
+						<WidgetCell >
+							<Button
+								handler={this.updateItem}
+								iconCls="x-fa fa-pencil"
+								style={{}} />
+						</WidgetCell>
+					</Column>
+
 				</Column>
-				<Column text="Update Item" flex={1} >
-					<WidgetCell >
-						<Button
-							ui="round action"
-							handler={this.updateItem}
-							text="UPDATE"
-							style={{ border: '1px solid red', background: "red" }} />
-					</WidgetCell>
-				</Column>
+
 			</Grid>
 		);
 	}

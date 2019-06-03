@@ -35,7 +35,7 @@ export default class AddNew extends Component {
 		var categoryName = this.state.categoryName
 
 
-		await axios.post(`http://localhost:9092/category`, { categoryName })
+		await axios.post(`http://localhost:9090/category`, { categoryName })
 			.then(res => {
 				console.log(res);
 				console.log(res.data);
