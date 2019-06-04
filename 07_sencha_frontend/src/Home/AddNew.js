@@ -24,18 +24,28 @@ import axios from "axios";
 import { small, medium } from "../responsiveFormulas";
 
 export default class AddNew extends Component {
+	constructor() {
+		super();
 
+		this.state = {
+			disabled: false
+		};
+	}
+
+	toggleDisabled() {
+		this.setState({ disabled: !this.state.disabled });
+	}
 
 	state = {}
 
-	getState = async () => {
+	createCategory = async () => {
 		console.log('this.state.categoryName', this.state.categoryName)
 
 
 		var categoryName = this.state.categoryName
 
 
-		await axios.post(`http://localhost:9090/category`, { categoryName })
+		await axios.post(`http://localhost:9090/data/category/new`, { categoryName })
 			.then(res => {
 				console.log(res);
 				console.log(res.data);
@@ -48,6 +58,7 @@ export default class AddNew extends Component {
 	}
 
 	render() {
+		const { disabled } = this.state;
 		return (
 			<Container store={this.store}
 				platformConfig={{
@@ -66,7 +77,7 @@ export default class AddNew extends Component {
 					padding="20"
 					platformConfig={{
 						"!phone": {
-							maxHeight: 500,
+							maxHeight: 300,
 							width: 350
 						}
 					}}
@@ -78,11 +89,14 @@ export default class AddNew extends Component {
 					</FieldSet>
 
 					<Toolbar shadow={false} docked="bottom" layout={{ type: 'hbox', pack: 'right' }}>
-						<Button text={'Create'} margin="0 10 0 0" handler={this.getState} />
+						<Button text={'Create'} margin="0 10 0 0" handler={this.createCategory} />
 						<Button text="Reset" handler={() => this.form.cmp.reset()} />
 					</Toolbar>
 				</FormPanel>
+
 			</Container>
+
+
 		);
 	}
 }

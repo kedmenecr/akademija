@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { Container, TitleBar, Button, Sheet, Panel } from '@sencha/ext-modern';
 import { Transition } from '@sencha/ext-react-transition';
-import AddNew from './Home/AddNew'
-
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { medium, large } from './responsiveFormulas';
 import Home from './Home/Home';
 import UpdateItem from './Home/UpdateItem';
 import About from './About/About';
 import NavMenu from './NavMenu';
+import AddNew from './Home/AddNew';
+import AddNewItems from './Home/AddNewItems';
+
 var REACT_VERSION = require('react').version
 
 /**
@@ -80,6 +81,7 @@ class Layout extends Component {
 					<Route path="/about" component={About} />
 					<Route path="/addnew" component={AddNew} />
 					<Route path="/updateItem" component={UpdateItem} />
+					<Route path="/addnewitems" component={AddNewItems} />
 				</Switch>
 			</Container>
 		);
