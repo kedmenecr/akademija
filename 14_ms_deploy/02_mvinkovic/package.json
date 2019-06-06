@@ -1,0 +1,16 @@
+{
+  "name": "02_mvinkovic",
+  "version": "1.0.0",
+  "description": "I'm chained microservice waiting to get free 02 ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mihael Vinković",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}
