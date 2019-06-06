@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 const request = require('request');
 
@@ -11,17 +10,18 @@ app.use(bodyParser.json());
 let portService = parseInt(port, 10) + 1
 const postService = `http://localhost:${portService}`;
 
-app.get('/test/:id', (req, res) => {
+app.post('/test/:id', (req, res) => {
     request.post({
         headers: { 'content-type': 'application/json' },
-        url: `${postService}/test/${req.params.id}`
-    }, (err, heroResponse, body) => {
+        url: `${postService}/test/${req.params.id}`,
+    }, (err, response, bodyPost) => {
         if (err) {
             res.send(err)
         } else {
             res.send("Sent!")
         }
     });
+
     res.send("sent")
 });
 
