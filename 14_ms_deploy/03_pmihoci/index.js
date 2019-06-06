@@ -2,7 +2,7 @@ const express = require("express")
 const request = require("request")
 const bodyParser = require("body-parser")
 
-const port = 9003
+const port = 9093
 const nextService = (process.argv[2]) ? process.argv[2] : 'http://35.234.76.207:9004/akademija/'
 
 const app = express()

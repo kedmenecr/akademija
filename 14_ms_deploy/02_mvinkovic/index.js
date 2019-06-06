@@ -15,7 +15,7 @@ app.post('/akademija/:id', (req, res) => {
         myValue = incomingParam + "b"
         request.post({
             headers: { "content-type": 'application/json' },
-            url: `${URL}/test/${myValue}`
+            url: `${URL}/akademija/${myValue}`
         }, (err, responseAkademija, body) => {
             if (err) {
                 console.log(err)

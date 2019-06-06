@@ -9,7 +9,7 @@ let URL = "http://35.234.76.207:9092"
 app.get('/akademija/:id', (req, res) => {
     request.post({
         headers: { 'content-type': 'application/json' },
-        url: `${URL}/test/jasamabcdef`,
+        url: `${URL}/akademija/jasama`,
     }, (err, responseAkademija, body) => {
         if (err) {
             res.send(err)
