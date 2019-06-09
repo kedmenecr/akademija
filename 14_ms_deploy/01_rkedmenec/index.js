@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express')  
 const bodyParser = require('body-parser')
 const request = require("request")
 const app = express()
@@ -7,6 +7,7 @@ const port = 9091
 let URL = "http://35.234.76.207:9092"
 
 app.get('/akademija/:id', (req, res) => {
+    console.log('req.params.id', req.params.id)
     request.post({
         headers: { 'content-type': 'application/json' },
         url: `${URL}/akademija/jasama`,

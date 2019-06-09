@@ -17,7 +17,7 @@ app.post('/akademija/:id', (req, res) => {
     newURL = lastURL + 'd'; 
     request.post({
     headers: {'content-type': 'application/json'},
-    url: `${URL}/akademija/${req.body.newURL}`
+    url: `${URL}/akademija/${req.params.newURL}`
     })
     res.status(200).send('It works at mkomljenovic!')
   } else {
