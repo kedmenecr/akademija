@@ -4,4 +4,4 @@ WORKDIR /src/app
 RUN npm install 
 COPY . /src/app
 EXPOSE 9001
-CMD ["npm", "node index.js"]
+CMD ["npm", "start"]
