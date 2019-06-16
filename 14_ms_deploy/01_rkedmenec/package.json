@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test": "jshint hello.js",  
     "start": "node index.js"
+  },
+    "devDependencies": {
+    "jshint": "^2.6.0"
   },
   "keywords": [],
   "author": "",
