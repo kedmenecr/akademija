@@ -29,7 +29,7 @@
 		"@sencha/ext-react": "^6.7.0",
 		"@sencha/ext-react-renderercell": "^6.7.0",
 		"@sencha/ext-react-transition": "^6.7.0",
-		"axios": "^0.18.0",
+		"axios": "^0.18.1",
 		"cors": "^2.8.5",
 		"font-awesome-icons": "^1.5.0",
 		"prop-types": "^15.7.2",
